@@ -1,6 +1,7 @@
-sudo apt-get update -y
-pip install tensorflow-addons
+#sudo apt-get update -y
+#sudo apt-get upgrade -y
 pip install tensorflow-gpu --ignore-installed wrapt
+pip install tensorflow-addons
 pip install OpenNMT-tf --ignore-installed PyYAML
 
 
