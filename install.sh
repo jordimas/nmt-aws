@@ -2,7 +2,7 @@
 #sudo apt-get upgrade -y
 pip install tensorflow-gpu --ignore-installed wrapt
 pip install tensorflow-addons
-pip install OpenNMT-tf --ignore-installed PyYAML
+pip install OpenNMT-tf==2.0.0 --ignore-installed PyYAML
 
 
 git clone https://github.com/OpenNMT/OpenNMT-py.git
