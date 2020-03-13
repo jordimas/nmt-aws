@@ -21,11 +21,18 @@
 import polib
 import re
 
+def file_len(fname):
+    with open(fname) as f:
+        for i, l in enumerate(f):
+            pass
+    return i + 1
+
 def split_in_six_files():
 
     srcs = set()
-    percentage_train = 90
-    percentage_validation = 5
+    number_validation = 5000
+    number_test = 5500 # number_test != number_validation
+
     cnt = 0
     pairs = 0
 
@@ -43,27 +50,35 @@ def split_in_six_files():
         src = read_source.readline()
         trg = read_target.readline()
 
+        total_lines = file_len("src.txt")
+        validation_each = round(total_lines / number_validation)
+        test_each = round(total_lines / number_test)
+
+        print("total_lines {0}".format(total_lines))
+        print("number_validation {0}".format(number_validation))
+        print("number_test {0}".format(number_test))
+        print("validation_each {0}".format(validation_each))
+        print("test_each {0}".format(test_each))
+
         while src and trg:
             pairs = pairs + 1
 
-            if cnt < percentage_train:
-                source = source_train
-                target = target_train
-            elif cnt < percentage_train + percentage_validation:
+            if cnt % validation_each == 0:
                 source = source_val
                 target = target_val
-            else:
+            elif cnt % test_each == 0:
                 source = source_test
                 target = target_test
+            else:
+                source = source_train
+                target = target_train
 
             source.write(src)
             target.write(trg)
-            cnt = cnt + 1
-            if cnt >= 100:
-                cnt = 0
 
             src = read_source.readline()
             trg = read_target.readline()
+            cnt = cnt + 1
 
 
     print("Pairs: " + str(pairs))
