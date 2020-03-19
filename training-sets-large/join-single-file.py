@@ -31,12 +31,21 @@ def split_in_six_files():
 
     srcs = set()
     number_validation = 30000
-    number_test = 30001 # number_test != number_validation
+    number_test = 32000 # number_test != number_validation
 
     cnt = 0
     pairs = 0
 
     print("Split src and tgt files in 6 files for training, text and validation")
+
+    total_lines = file_len("src.txt")
+    validation_each = round(total_lines / number_validation)
+    test_each = round(total_lines / number_test)
+
+    if test_each == validation_each:
+        print("validation_each and validation_each cannot be equal")
+        return
+        
 
     with open("src-val.txt", "w") as source_val,\
         open("tgt-val.txt", "w") as target_val,\
@@ -50,9 +59,6 @@ def split_in_six_files():
         src = read_source.readline()
         trg = read_target.readline()
 
-        total_lines = file_len("src.txt")
-        validation_each = round(total_lines / number_validation)
-        test_each = round(total_lines / number_test)
 
         print("total_lines {0}".format(total_lines))
         print("number_validation {0}".format(number_validation))
