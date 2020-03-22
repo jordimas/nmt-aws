@@ -44,13 +44,16 @@ def src():
     learner.ingest_file("src-train.txt")
     tokenizer = learner.learn("en_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("src-train.txt", "src-train.txt.token")
+    tokens = tokenizer.tokenize_file("src-test.txt", "src-test.txt.token")
+    tokens = tokenizer.tokenize_file("src-val.txt", "src-val.txt.token")
 
 def tgt():
     learner = pyonmttok.SentencePieceLearner(vocab_size=100000)
     learner.ingest_file("tgt-train.txt")
     tokenizer = learner.learn("ca_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("tgt-train.txt", "tgt-train.txt.token")
-
+    tokens = tokenizer.tokenize_file("tgt-test.txt", "tgt-test.txt.token")
+    tokens = tokenizer.tokenize_file("tgt-val.txt", "tgt-val.txt.token")
 
 def main():
 
