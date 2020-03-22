@@ -30,8 +30,8 @@ def file_len(fname):
 def split_in_six_files():
 
     srcs = set()
-    number_validation = 30000
-    number_test = 32000 # number_test != number_validation
+    number_validation = 3000
+    number_test = 3001 # number_test != number_validation
 
     cnt = 0
     pairs = 0
