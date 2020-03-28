@@ -1,2 +1,3 @@
-onmt-build-vocab --size 50000 --save_vocab src-vocab.txt src-train.txt
-onmt-build-vocab --size 50000 --save_vocab tgt-vocab.txt tgt-train.txt
+python3 sentencepiece.py
+onmt-build-vocab --size 100000 --save_vocab src-vocab.txt.token src-train.txt.token
+onmt-build-vocab --size 100000 --save_vocab tgt-vocab.txt.token tgt-train.txt.token
