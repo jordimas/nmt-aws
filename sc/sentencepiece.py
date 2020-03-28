@@ -40,7 +40,7 @@ def end_end_sample():
     print(text)
 
 def src():
-    learner = pyonmttok.SentencePieceLearner(vocab_size=100000)
+    learner = pyonmttok.SentencePieceLearner(vocab_size=32000)
     learner.ingest_file("src-train.txt")
     tokenizer = learner.learn("en_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("src-train.txt", "src-train.txt.token")
@@ -48,7 +48,7 @@ def src():
     tokens = tokenizer.tokenize_file("src-val.txt", "src-val.txt.token")
 
 def tgt():
-    learner = pyonmttok.SentencePieceLearner(vocab_size=100000)
+    learner = pyonmttok.SentencePieceLearner(vocab_size=32000)
     learner.ingest_file("tgt-train.txt")
     tokenizer = learner.learn("ca_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("tgt-train.txt", "tgt-train.txt.token")
