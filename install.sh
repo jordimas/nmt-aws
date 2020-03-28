@@ -13,4 +13,6 @@ git checkout -b 0.9.0
 cd ..
 mkdir model1
 cd model1
+git config --global user.name "Jordi Mas"
+git config --global user.email jmas@softcatala.org
 
