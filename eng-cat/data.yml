@@ -7,18 +7,20 @@ data:
   eval_labels_file: tgt-val.txt.token
   source_vocabulary: src-vocab.txt.token
   target_vocabulary: tgt-vocab.txt.token
-  #  source_tokenization:
-  #  mode: none
-   #sp_model_path: en_m.model
-
-  #target_tokenization:
-  #  mode: none
-          #sp_model_path: ca_m.model
-
 
 train:
    keep_checkpoint_max: 1
-   max_step: 10000
+   max_step: 50000
+
 
 params:
     replace_unknown_target: yes
+
+eval:
+    early_stopping:
+        # (optional) The target metric name (default: "loss").
+        metric: bleu
+        # (optional) The metric should improve at least by this much to be considered as an improvement (default: 0)
+        min_improvement: 0.01
+        steps: 4
+
