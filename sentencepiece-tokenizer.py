@@ -19,36 +19,34 @@
 # Boston, MA 02111-1307, USA.
 
 import pyonmttok
+from optparse import OptionParser
 
-def end_end_sample():
+def read_parameters():
+    parser = OptionParser()
 
-    # Create model
-    #learner = pyonmttok.SentencePieceLearner(vocab_size=32000)
-    #learner.ingest_file("src-test.txt")
-    #tokenizer = learner.learn("en_m.model")
+    parser.add_option(
+        '-v',
+        '--vocabulary-size',
+        type='string',
+        action='store',
+        default='32000',
+        dest='vocabulary_size',
+        help='Size of the vocabulary'
+    )
 
-    # Tokenize
-    learner = pyonmttok.SentencePieceLearner(vocab_size=32000)
-    text = "I'm loving it more than I expected"
-    tokenizer = pyonmttok.Tokenizer(mode="none", sp_model_path="en_m.model")    
-    tokens, features = tokenizer.tokenize(text)
-    print(tokens)
-    
+    (options, args) = parser.parse_args()
+    return options.vocabulary_size
 
-    # Destokenize
-    text, ranges = tokenizer.detokenize_with_ranges(tokens, merge_ranges=True)    
-    print(text)
-
-def src():
-    learner = pyonmttok.SentencePieceLearner(vocab_size=100000)
+def src(vocabulary_size):
+    learner = pyonmttok.SentencePieceLearner(vocab_size=vocabulary_size)
     learner.ingest_file("src-train.txt")
     tokenizer = learner.learn("en_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("src-train.txt", "src-train.txt.token")
     tokens = tokenizer.tokenize_file("src-test.txt", "src-test.txt.token")
     tokens = tokenizer.tokenize_file("src-val.txt", "src-val.txt.token")
 
-def tgt():
-    learner = pyonmttok.SentencePieceLearner(vocab_size=100000)
+def tgt(vocabulary_size):
+    learner = pyonmttok.SentencePieceLearner(vocab_size=vocabulary_size)
     learner.ingest_file("tgt-train.txt")
     tokenizer = learner.learn("ca_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("tgt-train.txt", "tgt-train.txt.token")
@@ -58,8 +56,11 @@ def tgt():
 def main():
 
     print("Creates tokenized output corpus using SentencePiece")
-    src()
-    tgt()
+    vocabulary_size = read_parameters()
+    print("Vocabulary size {0}".format(vocabulary_size))
+
+    src(vocabulary_size)
+    tgt(vocabulary_size)
 
 if __name__ == "__main__":
     main()
