@@ -9,4 +9,6 @@ echo "Date: $currentDate" >> $modelDescription
 ls *.txt -l > exported/assets/inputs_used.txt
 cp *.model exported/assets/
 cp data.yml exported/assets/
+cp src-vocab.txt.token exported/assets/
+cp tgt-vocab.txt.token exported/assets/
 zip -r exported-$currentDate.zip exported/
