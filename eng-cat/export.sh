@@ -11,4 +11,5 @@ cp *.model exported/assets/
 cp data.yml exported/assets/
 cp src-vocab.txt.token exported/assets/
 cp tgt-vocab.txt.token exported/assets/
+onmt-main --config data.yml --auto_config export --export_dir exported/ctranslate2 --export_format ctranslate2
 zip -r exported-$currentDate.zip exported/
