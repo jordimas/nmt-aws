@@ -27,7 +27,7 @@ def read_parameters():
     parser.add_option(
         '-v',
         '--vocabulary-size',
-        type='string',
+        type='int',
         action='store',
         default='32000',
         dest='vocabulary_size',
