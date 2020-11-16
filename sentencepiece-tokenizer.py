@@ -38,7 +38,10 @@ def read_parameters():
     return options.vocabulary_size
 
 def src(vocabulary_size):
-    learner = pyonmttok.SentencePieceLearner(vocab_size=vocabulary_size)
+#    learner = pyonmttok.SentencePieceLearner(vocab_size=vocabulary_size)
+    tokenizer = pyonmttok.Tokenizer("aggressive", joiner_annotate=True, segment_numbers=True, case_feature=True)
+    learner = pyonmttok.BPELearner(tokenizer=tokenizer, symbols=vocabulary_size)
+
     learner.ingest_file("src-train.txt")
     tokenizer = learner.learn("en_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("src-train.txt", "src-train.txt.token")
@@ -46,7 +49,10 @@ def src(vocabulary_size):
     tokens = tokenizer.tokenize_file("src-val.txt", "src-val.txt.token")
 
 def tgt(vocabulary_size):
-    learner = pyonmttok.SentencePieceLearner(vocab_size=vocabulary_size)
+#    learner = pyonmttok.SentencePieceLearner(vocab_size=vocabulary_size)
+    tokenizer = pyonmttok.Tokenizer("aggressive", joiner_annotate=True, segment_numbers=True, case_feature=True)
+    learner = pyonmttok.BPELearner(tokenizer=tokenizer, symbols=vocabulary_size)
+
     learner.ingest_file("tgt-train.txt")
     tokenizer = learner.learn("ca_m.model", verbose=True)
     tokens = tokenizer.tokenize_file("tgt-train.txt", "tgt-train.txt.token")
