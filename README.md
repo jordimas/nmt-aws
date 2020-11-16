@@ -11,7 +11,13 @@ Deep Learning AMI (Ubuntu 18.04) Version 36.0 - ami-096a6497745975f89
 ## Check Cuda version
 
 Tensorflow requires specific versions of CUDA drives. Check that the CUDA
-drives are properly supported by you Tensorflow version:
+drives are properly supported by you Tensorflow version.
 
-nvidia-smi
+execute ```./install-cuda.sh``` if it is necessary.
+
+Reboot 
+
+## Install OpenNMT and necessary dependencies
+
+execute ```./install.sh ```
 
