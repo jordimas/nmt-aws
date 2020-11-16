@@ -23,7 +23,11 @@ import pyonmttok
 
 
 def predictions():
-    tokenizer = pyonmttok.Tokenizer(mode="none", sp_model_path="ca_m.model")
+#    tokenizer = pyonmttok.Tokenizer(mode="none", sp_model_path="ca_m.model")
+#    tokenizer = pyonmttok.Tokenizer("aggressive", joiner_annotate=True, segment_numbers=True, case_feature=True)
+#    learner = pyonmttok.BPELearner(tokenizer=tokenizer, symbols=50000)
+    tokenizer = pyonmttok.Tokenizer(mode="none", bpe_model_path="ca_m.model")
+
     tokens = tokenizer.detokenize_file("predictions.txt.token", "predictions.txt")
 
 
